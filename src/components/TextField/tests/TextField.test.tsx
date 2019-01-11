@@ -317,12 +317,12 @@ describe('<TextField />', () => {
         />,
       );
 
-      const characterCount = textField.find('#MyField-character-counter');
+      const characterCount = textField.find('#MyFieldCharacterCounter');
 
       expect(characterCount.text()).toBe('4');
     });
 
-    it('displays remaining characters in input field with maxLength', () => {
+    it('displays remaining characters as fraction in input field with maxLength', () => {
       const textField = mountWithAppProvider(
         <TextField
           value="test"
@@ -334,9 +334,9 @@ describe('<TextField />', () => {
         />,
       );
 
-      const characterCount = textField.find('#MyField-character-counter');
+      const characterCount = textField.find('#MyFieldCharacterCounter');
 
-      expect(characterCount.text()).toBe('6');
+      expect(characterCount.text()).toBe('4/10');
     });
   });
 
