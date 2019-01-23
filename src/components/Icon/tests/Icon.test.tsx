@@ -23,14 +23,14 @@ describe('<Icon />', () => {
       expect(element.find('svg')).toHaveLength(1);
     });
 
-    it('renders an SVG when source is given an SVG', () => {
+    it('renders an img when source is given an SVG', () => {
       const svg = {
         body:
           "<path d='M17 9h-6V3a1 1 0 1 0-2 0v6H3a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2'  fill-rule='evenodd'/>",
         viewBox: '0 0 20 20',
       };
       const element = shallowWithAppProvider(<Icon source={svg} />);
-      expect(element.find('svg')).toHaveLength(1);
+      expect(element.find('img')).toHaveLength(1);
     });
 
     it('renders a React Component when source is given a React Component', () => {

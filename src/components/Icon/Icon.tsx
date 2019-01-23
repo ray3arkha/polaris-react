@@ -210,22 +210,26 @@ function Icon({
     contentMarkup = <div className={styles.Placeholder} />;
   } else if (React.isValidElement(source)) {
     contentMarkup = source;
-  } else {
-    const iconSource =
-      typeof source === 'string' && isBundledIcon(source)
-        ? BUNDLED_ICONS[source]
-        : source;
-    contentMarkup = iconSource &&
-      iconSource.viewBox &&
-      iconSource.body && (
-        <svg
-          className={styles.Svg}
-          viewBox={iconSource.viewBox}
-          dangerouslySetInnerHTML={{__html: iconSource.body}}
-          focusable="false"
-          aria-hidden="true"
-        />
-      );
+  } else if (isBundledIcon(source)) {
+    const iconSource = BUNDLED_ICONS[source];
+    contentMarkup = (
+      <svg
+        className={styles.Svg}
+        viewBox={iconSource.viewBox}
+        dangerouslySetInnerHTML={{__html: iconSource.body}}
+        focusable="false"
+        aria-hidden="true"
+      />
+    );
+  } else if (isSVGSource(source)) {
+    contentMarkup = (
+      <img
+        className={styles.Img}
+        src={`data:image/svg+xml;base64,${btoa(source.body)}`}
+        alt=""
+        aria-hidden="true"
+      />
+    );
   }
 
   return (
@@ -235,8 +239,17 @@ function Icon({
   );
 }
 
-function isBundledIcon(key: string | BundledIcon): key is BundledIcon {
-  return Object.keys(BUNDLED_ICONS).includes(key);
+function isSVGSource(source: IconSource): source is SVGSource {
+  return (
+    typeof source === 'object' &&
+    source !== null &&
+    source.hasOwnProperty('body') &&
+    source.hasOwnProperty('viewBox')
+  );
+}
+
+function isBundledIcon(key: IconSource): key is BundledIcon {
+  return typeof key === 'string' && Object.keys(BUNDLED_ICONS).includes(key);
 }
 
 export default withAppProvider<Props>()(Icon);
