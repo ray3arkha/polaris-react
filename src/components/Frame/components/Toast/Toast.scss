@@ -18,7 +18,8 @@ $Backdrop-opacity: 0.88;
 }
 
 .ActionLink {
-  margin-left: (spacing(extra-loose));
+  margin-left: spacing(extra-loose);
+  margin-right: spacing();
 }
 
 .error {
