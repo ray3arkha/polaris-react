@@ -64,6 +64,6 @@ export interface ToastProps {
   error?: boolean;
   /** Callback when the dismiss icon is clicked */
   onDismiss(): void;
-/** Adds an action next to the message */
+  /** Adds an action next to the message */
   action?: Action;
 }

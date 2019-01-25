@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {timer} from '@shopify/jest-dom-mocks';
-import {mountWithAppProvider} from 'test-utilities';
+import {mountWithAppProvider, trigger} from 'test-utilities';
 import {noop} from 'utilities/other';
 import Link from '../../../../Link';
 import {ToastProps as Props} from '../../../types';
@@ -45,6 +45,7 @@ describe('<Toast />', () => {
     };
 
     it('does not render when not defined', () => {
+      const message = mountWithAppProvider(<Toast {...mockProps} />);
       expect(message.find(Link)).toHaveLength(0);
     });
 
@@ -71,7 +72,7 @@ describe('<Toast />', () => {
         <Toast {...mockProps} action={mockActionWithSpy} />,
       );
 
-      message.find(Link).simulate('click');
+      trigger(message.find(Link), 'onClick');
 
       expect(spy).toHaveBeenCalledTimes(1);
     });
