@@ -258,6 +258,51 @@ class ToastExample extends React.Component {
 }
 ```
 
+### Toast with action
+
+<!-- example-for: web -->
+
+Use action when you have the ability to act on the message. For example, undo changes, or retry an action. Keep the action label short, preferably 1 verb action.
+
+```jsx
+class ToastExample extends React.Component {
+  state = {
+    showToast: false,
+  };
+
+  render() {
+    const {showToast} = this.state;
+    const toastMarkup = showToast ? (
+      <Toast
+        content="No internet connection"
+        action={{
+          content: 'Retry',
+          onAction: () => {},
+        }}
+        duration={10000}
+        error
+        onDismiss={this.toggleToast}
+      />
+    ) : null;
+
+    return (
+      <div style={{height: '250px'}}>
+        <Frame>
+          <Page title="Toast example">
+            <Button onClick={this.toggleToast}>Show Toast</Button>
+            {toastMarkup}
+          </Page>
+        </Frame>
+      </div>
+    );
+  }
+
+  toggleToast = () => {
+    this.setState(({showToast}) => ({showToast: !showToast}));
+  };
+}
+```
+
 ### Default toast
 
 <!-- example-for: android, ios -->
