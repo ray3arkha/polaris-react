@@ -24,7 +24,6 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Changed `Tabs` example to contain children so the `Panel` renders for accessibility ([#893](https://github.com/Shopify/polaris-react/pull/893))
 - Fixed timezone not being accounted for in `ResourceList` date filter control ([#710](https://github.com/Shopify/polaris-react/pull/710))
 - Removed unnecessary tooltip text in the `TopBar` component ([#859](https://github.com/Shopify/polaris-react/pull/859))
-- Added clamp to `RangeSlider` so its initial value doesn't fall outside of min or max bounds ([#784](https://github.com/Shopify/polaris-react/pull/784))
 
 ### Documentation
 
